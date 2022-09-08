@@ -1,0 +1,837 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="HeiSai">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Cmake 使用1： 最小案例：cmake_minimum_required(VERSION 3.5)  project(Demon LANGUAGES C CXX)            &#x2F;&#x2F; 设置工程名称 和 c c++ 语言  set(CMAKE_CXX_STANDARD 17)                   &#x2F;&#x2F;指定为C++17 版本  set(CMAKE_CXX_STANDARD_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CMake 学习">
+<meta property="og:url" content="http://example.com/2022/09/08/CMake%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="HeiSai">
+<meta property="og:description" content="Cmake 使用1： 最小案例：cmake_minimum_required(VERSION 3.5)  project(Demon LANGUAGES C CXX)            &#x2F;&#x2F; 设置工程名称 和 c c++ 语言  set(CMAKE_CXX_STANDARD 17)                   &#x2F;&#x2F;指定为C++17 版本  set(CMAKE_CXX_STANDARD_">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-08T06:47:06.000Z">
+<meta property="article:modified_time" content="2022-09-08T06:58:47.960Z">
+<meta property="article:author" content="HeiSai">
+<meta property="article:tag" content="CMake 工具">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>CMake 学习 - HeiSai</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"dNrjrNyC0iY1hyJNGKDMEXO6-gzGzoHsz","app_key":"ETfcerqQjArDGuAhIlNCKrsh","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>二仙桥大爷</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="CMake 学习"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-08 14:47" pubdate>
+          2022年9月8日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          3.1k字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          27分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span>次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">CMake 学习</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Cmake-使用"><a href="#Cmake-使用" class="headerlink" title="Cmake 使用"></a><em>Cmake 使用</em></h1><h2 id="1：-最小案例："><a href="#1：-最小案例：" class="headerlink" title="1： 最小案例："></a>1： 最小案例：</h2><pre><code class="hljs">cmake_minimum_required(VERSION 3.5)
+
+project(Demon LANGUAGES C CXX)            // 设置工程名称 和 c c++ 语言
+
+set(CMAKE_CXX_STANDARD 17)                   //指定为C++17 版本
+
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+add_executable($&#123;PROJECT_NAME&#125; main.cpp) 
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LANGUAGES</td>
+<td>支持语言</td>
+</tr>
+<tr>
+<td>CMAKE_CXX_STANDARD</td>
+<td>c++语言版本</td>
+</tr>
+<tr>
+<td>PROJECT_NAME</td>
+<td>工程名称</td>
+</tr>
+<tr>
+<td>PROJECT_BINARY_DIR</td>
+<td>执行程序目录</td>
+</tr>
+<tr>
+<td>PROJECT_SOURCE_DIR</td>
+<td>源文件目录</td>
+</tr>
+</tbody></table>
+<pre><code class="hljs">PROJECT(projectname [CXX] [C] [Java])：
+
+你可以用这个指令定义工程名称,并可指定工程支持的语言,支持的语言列表是可以忽略的,默认情况表示支持所有语言。这个指令隐式的定义了两个 cmake 变量:&lt;projectname&gt;_BINARY_DIR 以及&lt;projectname&gt;_SOURCE_DIR,这里就是
+
+MESSAGE(STATUS &quot;This is BINARY dir &quot; $&#123;Demon_BINARY_DIR&#125;)
+
+MESSAGE(STATUS &quot;This is SOURCE dir &quot;$&#123;Demon_SOURCE_DIR&#125;)
+
+替代品：
+
+MESSAGE(STATUS &quot;This is BINARY dir &quot; $&#123;PROJECT_BINARY_DIR&#125;)
+
+MESSAGE(STATUS &quot;This is SOURCE dir &quot;$&#123;PROJECT_SOURCE_DIR&#125;)
+
+生成结果：
+
+    -- This is BINARY dir E:/GLTest/CMAKE/cmaketest/build
+
+    -- This is BINARY dir E:/GLTest/CMAKE/cmaketest
+</code></pre>
+<h2 id="2：-生成一个库并添加："><a href="#2：-生成一个库并添加：" class="headerlink" title="2： 生成一个库并添加："></a>2： 生成一个库并添加：</h2><ul>
+<li><p>第一种方法</p>
+<pre><code class="hljs">  cmake_minimum_required(VERSION 3.5)
+
+  project(cmaketest LANGUAGES CXX)
+
+  set(CMAKE_CXX_STANDARD 17)
+
+  set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+  file(GLOB_RECURSE SOURCE_FILES  ./adddir/*.cpp)       # 递归遍历 添加 .cpp
+
+  file(GLOB_RECURSE HEADER_FILES  ./adddir/*.h)         # 递归遍历添加 .h
+
+  add_library (ADD  ./adddir/MyAdd.cpp)                 # 生成 add.lib 库
+
+  add_executable(cmaketest main.cpp $&#123;SOURCE_FILES&#125;)
+
+  target_link_libraries($&#123;PROJECT_NAME&#125; ADD)            # 链接调用 ADD.lib
+</code></pre>
+</li>
+<li><p>第二种方法：</p>
+<pre><code class="hljs">  ├── CMakeLists.txt                      #父目录的CMakeList.txt
+  ├── main.cpp                            #源文件，包含main函数
+  ├── adddir                              #子目录
+      └── CMakeLists.txt                  #子目录的CMakeLists.txt
+      └── MyAdd.h                         #子目录头文件
+      └── MyAdd.cpp                       #子目录源文件
+
+
+  cmake_minimum_required(VERSION 3.5)
+
+  project(cmaketest LANGUAGES CXX)
+
+  set(CMAKE_CXX_STANDARD 17)
+
+  set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+  include_directories ($&#123;PROJECT_SOURCE_DIR&#125;/adddir)
+
+  add_subdirectory (adddir)
+
+  add_executable(cmaketest main.cpp $&#123;SOURCE_FILES&#125;)
+
+  target_link_libraries($&#123;PROJECT_NAME&#125; ADD)                    # 链接调用 ADD.lib
+</code></pre>
+<p>  <em>区别：</em></p>
+<pre><code class="hljs">  第一种 add.lib 生成在和可执行程序在同一目录
+
+  第二种 add.lib 生成在可执行程序目录的 adddir 目录（add_subdirectory (adddir)）
+</code></pre>
+</li>
+</ul>
+<h2 id="3：-项目中使用第三方库"><a href="#3：-项目中使用第三方库" class="headerlink" title="3： 项目中使用第三方库"></a>3： 项目中使用第三方库</h2><ul>
+<li><p>使用场景：项目中使用OpenGl 第三放库（glfw）以及glad,glm 源文件</p>
+</li>
+<li><p>案例：</p>
+<pre><code class="hljs">      cmake_minimum_required(VERSION 3.5)
+
+      project(opengl6 LANGUAGES  C CXX)
+
+      set(CMAKE_CXX_STANDARD 17)              
+      
+      set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+      set(LIBDIR  ./OpenGl/glfw/lib)                                                  #设置库路径
+      
+      set(INCLUDEDIR  ./OpenGl/glad/include ./OpenGl/glfw/include ./OpenGl/glm)       #设置头文件路径
+  
+      link_directories($&#123;LIBDIR&#125;)                                    # 加载库路径
+  
+      include_directories($&#123;INCLUDEDIR&#125;)                             # 加载头文件路径
+
+      file(GLOB_RECURSE SOURCE_FILES  ./src/*.cpp)                   # 添加 .cpp
+
+      file(GLOB_RECURSE HEADER_FILES  ./src/*.h)                     # 添加 .h
+  
+      add_executable ($&#123;PROJECT_NAME&#125; main.cpp $&#123;HEADER_FILES&#125; $&#123;SOURCE_FILES&#125;)        # 将源代码添加到此项目的可执行文件。
+
+      add_library(GLAD ./src/glad.c)                                # 编译glad 库
+
+      set(LIBS glfw3 opengl32 GLAD)
+      
+      target_link_libraries($&#123;PROJECT_NAME&#125; $&#123;LIBS&#125;)                # 链接 可执行文件 所需库
+</code></pre>
+</li>
+<li><p>讲解：</p>
+<pre><code class="hljs">  1&gt; link_directories($&#123;LIBDIR&#125;)             # 加载库文件
+
+  2&gt; include_directories($&#123;INCLUDEDIR&#125;)      # 加载头文件
+
+  3&gt; SET 指令的语法是:  现阶段,你只需要了解 SET 指令可以用来显式的定义变量即可。
+
+      SET(VAR [VALUE] [CACHE TYPE DOCSTRING [FORCE]])
+
+  4&gt; MESSAGE 指令的语法是:   MESSAGE([SEND_ERROR | STATUS | FATAL_ERROR] &quot;message to display&quot;...)
+
+      这个指令用于向终端输出用户定义的信息,包含了三种类型:
+      
+      SEND_ERROR,产生错误,生成过程被跳过。
+
+      SATUS,输出前缀为—的信息。
+
+      FATAL_ERROR,立即终止所有 cmake 过程.
+
+      MESSAGE(SEND_ERROR  &quot;SEND_ERROR&quot; )
+
+      CMake Error at CMakeLists.txt:8 (MESSAGE):
+          SEND_ERROR
+      
+      MESSAGE(FATAL_ERROR &quot;FATAL_ERROR&quot; )
+      
+      CMake Error at CMakeLists.txt:9 (MESSAGE):
+          FATAL_ERROR
+</code></pre>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CMake-%E5%B7%A5%E5%85%B7/">#CMake 工具</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>CMake 学习</div>
+      <div>http://example.com/2022/09/08/CMake学习/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>HeiSai</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年9月8日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"dNrjrNyC0iY1hyJNGKDMEXO6-gzGzoHsz","appKey":"ETfcerqQjArDGuAhIlNCKrsh","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
