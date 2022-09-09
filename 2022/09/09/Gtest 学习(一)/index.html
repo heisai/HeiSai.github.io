@@ -16,22 +16,22 @@
   <meta name="author" content="HeiSai">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Cmake 使用1： 最小案例：cmake_minimum_required(VERSION 3.5)  project(Demon LANGUAGES C CXX)            &#x2F;&#x2F; 设置工程名称 和 c c++ 语言  set(CMAKE_CXX_STANDARD 17)                   &#x2F;&#x2F;指定为C++17 版本  set(CMAKE_CXX_STANDARD_">
+    <meta name="description" content="Gtest入门介绍简单使用：    &#x2F;&#x2F;test function     int getdata(int n,int m)     &amp;#123;         return  n+m;     &amp;#125;     TEST(getdata, demon)     &amp;#123;         EXPECT_EQ(1,1);  &#x2F;&#x2F; 等于         EXPECT_NE(1,2);  &#x2F;&#x2F;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CMake 学习(一)">
-<meta property="og:url" content="http://example.com/2022/09/08/CMake%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:title" content="Gtest入门介绍">
+<meta property="og:url" content="http://example.com/2022/09/09/Gtest%20%E5%AD%A6%E4%B9%A0(%E4%B8%80)/index.html">
 <meta property="og:site_name" content="HeiSai">
-<meta property="og:description" content="Cmake 使用1： 最小案例：cmake_minimum_required(VERSION 3.5)  project(Demon LANGUAGES C CXX)            &#x2F;&#x2F; 设置工程名称 和 c c++ 语言  set(CMAKE_CXX_STANDARD 17)                   &#x2F;&#x2F;指定为C++17 版本  set(CMAKE_CXX_STANDARD_">
+<meta property="og:description" content="Gtest入门介绍简单使用：    &#x2F;&#x2F;test function     int getdata(int n,int m)     &amp;#123;         return  n+m;     &amp;#125;     TEST(getdata, demon)     &amp;#123;         EXPECT_EQ(1,1);  &#x2F;&#x2F; 等于         EXPECT_NE(1,2);  &#x2F;&#x2F;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-09-08T06:47:06.000Z">
-<meta property="article:modified_time" content="2022-09-08T08:45:31.520Z">
+<meta property="article:published_time" content="2022-09-09T15:27:06.000Z">
+<meta property="article:modified_time" content="2022-09-09T15:27:14.264Z">
 <meta property="article:author" content="HeiSai">
-<meta property="article:tag" content="CMake 工具">
+<meta property="article:tag" content="Gtest">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>CMake 学习(一) - HeiSai</title>
+  <title>Gtest入门介绍 - HeiSai</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -213,7 +213,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="CMake 学习(一)"></span>
+            <span id="subtitle" data-typed-text="Gtest入门介绍"></span>
           
         </div>
 
@@ -224,8 +224,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-08 14:47" pubdate>
-          2022年9月8日 下午
+        <time datetime="2022-09-09 23:27" pubdate>
+          2022年9月9日 晚上
         </time>
       </span>
     
@@ -237,7 +237,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          3.1k字
+          1.5k字
         
       </span>
     
@@ -249,7 +249,7 @@
         
         
           <!-- compatible with older versions-->
-          27分钟
+          13分钟
         
       </span>
     
@@ -295,186 +295,89 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">CMake 学习(一)</h1>
+            <h1 style="display: none">Gtest入门介绍</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Cmake-使用"><a href="#Cmake-使用" class="headerlink" title="Cmake 使用"></a><em>Cmake 使用</em></h1><h2 id="1：-最小案例："><a href="#1：-最小案例：" class="headerlink" title="1： 最小案例："></a>1： 最小案例：</h2><pre><code class="hljs">cmake_minimum_required(VERSION 3.5)
+                <h1 id="Gtest入门介绍"><a href="#Gtest入门介绍" class="headerlink" title="Gtest入门介绍"></a><em>Gtest入门介绍</em></h1><h4 id="简单使用："><a href="#简单使用：" class="headerlink" title="简单使用："></a>简单使用：</h4><pre><code class="hljs">    //test function
+    int getdata(int n,int m)
+    &#123;
+        return  n+m;
+    &#125;
+    TEST(getdata, demon)
+    &#123;
+        EXPECT_EQ(1,1);  // 等于
+        EXPECT_NE(1,2);  //不等于
+        EXPECT_LE(1,2);  // 小于等于
+        EXPECT_LT(getdata(1,-1),2);  //小于
+        EXPECT_GT(getdata(1,2),1);   //大于
+        EXPECT_GE(getdata(1,2),1);   //大于等于
 
-project(Demon LANGUAGES C CXX)            // 设置工程名称 和 c c++ 语言
+        EXPECT_TRUE(1!=2); //判断true
+        EXPECT_FALSE(1==2); //判断true
 
-set(CMAKE_CXX_STANDARD 17)                   //指定为C++17 版本
+    &#125;
 
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable($&#123;PROJECT_NAME&#125; main.cpp) 
+    int main(int argc, char **argv)
+    &#123;
+
+        ::testing::InitGoogleTest(&amp;argc, argv);
+        return RUN_ALL_TESTS();
+    &#125;
 </code></pre>
-<table>
-<thead>
-<tr>
-<th>变量</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>LANGUAGES</td>
-<td>支持语言</td>
-</tr>
-<tr>
-<td>CMAKE_CXX_STANDARD</td>
-<td>c++语言版本</td>
-</tr>
-<tr>
-<td>PROJECT_NAME</td>
-<td>工程名称</td>
-</tr>
-<tr>
-<td>PROJECT_BINARY_DIR</td>
-<td>执行程序目录</td>
-</tr>
-<tr>
-<td>PROJECT_SOURCE_DIR</td>
-<td>源文件目录</td>
-</tr>
-</tbody></table>
-<pre><code class="hljs">PROJECT(projectname [CXX] [C] [Java])：
+<h4 id="复杂条件判断"><a href="#复杂条件判断" class="headerlink" title="复杂条件判断:"></a>复杂条件判断:</h4><pre><code class="hljs">    尽管 googletest 有一组丰富的断言，但它们永远不会是完整的，因为预测用户可能遇到的所有场景是不可能的（也不是一个好主意）。因此，有时用户不得不使用EXPECT_TRUE()检查一个复杂的表达式，因为缺少一个更好的宏。这样做的问题是没有向您显示表达式部分的值，因此很难理解出了什么问题。作为一种解决方法，一些用户选择自己构建失败消息，将其流式传输到EXPECT_TRUE(). 但是，这很尴尬，尤其是当表达式具有副作用或评估成本很高时。
 
-你可以用这个指令定义工程名称,并可指定工程支持的语言,支持的语言列表是可以忽略的,默认情况表示支持所有语言。这个指令隐式的定义了两个 cmake 变量:&lt;projectname&gt;_BINARY_DIR 以及&lt;projectname&gt;_SOURCE_DIR,这里就是
-
-MESSAGE(STATUS &quot;This is BINARY dir &quot; $&#123;Demon_BINARY_DIR&#125;)
-
-MESSAGE(STATUS &quot;This is SOURCE dir &quot;$&#123;Demon_SOURCE_DIR&#125;)
-
-替代品：
-
-MESSAGE(STATUS &quot;This is BINARY dir &quot; $&#123;PROJECT_BINARY_DIR&#125;)
-
-MESSAGE(STATUS &quot;This is SOURCE dir &quot;$&#123;PROJECT_SOURCE_DIR&#125;)
-
-生成结果：
-
-    -- This is BINARY dir E:/GLTest/CMAKE/cmaketest/build
-
-    -- This is BINARY dir E:/GLTest/CMAKE/cmaketest
+    googletest 为您提供了三种不同的选项来解决此问题：
 </code></pre>
-<h2 id="2：-生成一个库并添加："><a href="#2：-生成一个库并添加：" class="headerlink" title="2： 生成一个库并添加："></a>2： 生成一个库并添加：</h2><ul>
-<li><p>第一种方法</p>
-<pre><code class="hljs">  cmake_minimum_required(VERSION 3.5)
+<ul>
+<li><p>使用现有的布尔函数</p>
+<pre><code class="hljs">   如果您已经有一个返回的函数或仿函数bool（或可以隐式转换为的类型bool），您可以在谓词断言中使用它来免费打印函数参数
 
-  project(cmaketest LANGUAGES CXX)
-
-  set(CMAKE_CXX_STANDARD 17)
-
-  set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-  file(GLOB_RECURSE SOURCE_FILES  ./adddir/*.cpp)       # 递归遍历 添加 .cpp
-
-  file(GLOB_RECURSE HEADER_FILES  ./adddir/*.h)         # 递归遍历添加 .h
-
-  add_library (ADD  ./adddir/MyAdd.cpp)                 # 生成 add.lib 库
-
-  add_executable(cmaketest main.cpp $&#123;SOURCE_FILES&#125;)
-
-  target_link_libraries($&#123;PROJECT_NAME&#125; ADD)            # 链接调用 ADD.lib
+  bool Factorial(int n,int m)
+  &#123;
+      return (n+m)&gt;5;
+  &#125;
+  TEST(judage,demon1)
+  &#123;
+      EXPECT_PRED2(Factorial,3,1);
+  &#125;
 </code></pre>
 </li>
-<li><p>第二种方法：</p>
-<pre><code class="hljs">  ├── CMakeLists.txt                      #父目录的CMakeList.txt
-  ├── main.cpp                            #源文件，包含main函数
-  ├── adddir                              #子目录
-      └── CMakeLists.txt                  #子目录的CMakeLists.txt
-      └── MyAdd.h                         #子目录头文件
-      └── MyAdd.cpp                       #子目录源文件
+<li><p>使用返回 AssertionResult 的函数</p>
+<pre><code class="hljs">  testing::AssertionResult IsEven(int data )
+  &#123;
 
+      if ((data % 2) == 0)
+          return testing::AssertionSuccess();
+      else
+          return testing::AssertionFailure() &lt;&lt; data &lt;&lt; &quot;%2!=0&quot;;
+  &#125;
 
-  cmake_minimum_required(VERSION 3.5)
+  int datavalue(int data)
+  &#123;
+      // do something
+      return data*data;
+  &#125;
 
-  project(cmaketest LANGUAGES CXX)
-
-  set(CMAKE_CXX_STANDARD 17)
-
-  set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-  include_directories ($&#123;PROJECT_SOURCE_DIR&#125;/adddir)
-
-  add_subdirectory (adddir)
-
-  add_executable(cmaketest main.cpp $&#123;SOURCE_FILES&#125;)
-
-  target_link_libraries($&#123;PROJECT_NAME&#125; ADD)                    # 链接调用 ADD.lib
-</code></pre>
-<p>  <em>区别：</em></p>
-<pre><code class="hljs">  第一种 add.lib 生成在和可执行程序在同一目录
-
-  第二种 add.lib 生成在可执行程序目录的 adddir 目录（add_subdirectory (adddir)）
+  TEST(getdata, demon2)
+  &#123;
+      EXPECT_TRUE(IsEven(10));
+      EXPECT_TRUE(IsEven(datavalue(5)));
+  &#125;
 </code></pre>
 </li>
 </ul>
-<h2 id="3：-项目中使用第三方库"><a href="#3：-项目中使用第三方库" class="headerlink" title="3： 项目中使用第三方库"></a>3： 项目中使用第三方库</h2><ul>
-<li><p>使用场景：项目中使用OpenGl 第三放库（glfw）以及glad,glm 源文件</p>
-</li>
-<li><p>案例：</p>
-<pre><code class="hljs">      cmake_minimum_required(VERSION 3.5)
-
-      project(opengl6 LANGUAGES  C CXX)
-
-      set(CMAKE_CXX_STANDARD 17)              
-      
-      set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-      set(LIBDIR  ./OpenGl/glfw/lib)                                                  #设置库路径
-      
-      set(INCLUDEDIR  ./OpenGl/glad/include ./OpenGl/glfw/include ./OpenGl/glm)       #设置头文件路径
-  
-      link_directories($&#123;LIBDIR&#125;)                                    # 加载库路径
-  
-      include_directories($&#123;INCLUDEDIR&#125;)                             # 加载头文件路径
-
-      file(GLOB_RECURSE SOURCE_FILES  ./src/*.cpp)                   # 添加 .cpp
-
-      file(GLOB_RECURSE HEADER_FILES  ./src/*.h)                     # 添加 .h
-  
-      add_executable ($&#123;PROJECT_NAME&#125; main.cpp $&#123;HEADER_FILES&#125; $&#123;SOURCE_FILES&#125;)        # 将源代码添加到此项目的可执行文件。
-
-      add_library(GLAD ./src/glad.c)                                # 编译glad 库
-
-      set(LIBS glfw3 opengl32 GLAD)
-      
-      target_link_libraries($&#123;PROJECT_NAME&#125; $&#123;LIBS&#125;)                # 链接 可执行文件 所需库
+<h4 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h4><pre><code class="hljs">TEST(getdata, demon2)
+&#123;
+    cout&lt;&lt;&quot;str compare&quot;&lt;&lt;endl;
+    EXPECT_STREQ(&quot;1234&quot;,&quot;1234&quot;);            //等于
+    EXPECT_STRNE(&quot;1234&quot;,&quot;12345&quot;);           //不等于
+    EXPECT_STRCASEEQ(&quot;qwer&quot;,&quot;QWER&quot;);        //忽略大小写等于
+    EXPECT_STRCASENE(&quot;qwer&quot;,&quot;QWERq&quot;);       //忽略大小写不等于
+&#125;
 </code></pre>
-</li>
-<li><p>讲解：</p>
-<pre><code class="hljs">  1&gt; link_directories($&#123;LIBDIR&#125;)             # 加载库文件
-
-  2&gt; include_directories($&#123;INCLUDEDIR&#125;)      # 加载头文件
-
-  3&gt; SET 指令的语法是:  现阶段,你只需要了解 SET 指令可以用来显式的定义变量即可。
-
-      SET(VAR [VALUE] [CACHE TYPE DOCSTRING [FORCE]])
-
-  4&gt; MESSAGE 指令的语法是:   MESSAGE([SEND_ERROR | STATUS | FATAL_ERROR] &quot;message to display&quot;...)
-
-      这个指令用于向终端输出用户定义的信息,包含了三种类型:
-      
-      SEND_ERROR,产生错误,生成过程被跳过。
-
-      SATUS,输出前缀为—的信息。
-
-      FATAL_ERROR,立即终止所有 cmake 过程.
-
-      MESSAGE(SEND_ERROR  &quot;SEND_ERROR&quot; )
-
-      CMake Error at CMakeLists.txt:8 (MESSAGE):
-          SEND_ERROR
-      
-      MESSAGE(FATAL_ERROR &quot;FATAL_ERROR&quot; )
-      
-      CMake Error at CMakeLists.txt:9 (MESSAGE):
-          FATAL_ERROR
-</code></pre>
-</li>
-</ul>
 
                 
               </div>
@@ -487,7 +390,7 @@ MESSAGE(STATUS &quot;This is SOURCE dir &quot;$&#123;PROJECT_SOURCE_DIR&#125;)
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/CMake-%E5%B7%A5%E5%85%B7/">#CMake 工具</a>
+        <a href="/tags/Gtest/">#Gtest</a>
       
     </div>
   
@@ -499,8 +402,8 @@ MESSAGE(STATUS &quot;This is SOURCE dir &quot;$&#123;PROJECT_SOURCE_DIR&#125;)
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>CMake 学习(一)</div>
-      <div>http://example.com/2022/09/08/CMake学习/</div>
+      <div>Gtest入门介绍</div>
+      <div>http://example.com/2022/09/09/Gtest 学习(一)/</div>
     </div>
     <div class="license-meta">
       
@@ -512,7 +415,7 @@ MESSAGE(STATUS &quot;This is SOURCE dir &quot;$&#123;PROJECT_SOURCE_DIR&#125;)
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年9月8日</div>
+          <div>2022年9月9日</div>
         </div>
       
       
@@ -542,15 +445,15 @@ MESSAGE(STATUS &quot;This is SOURCE dir &quot;$&#123;PROJECT_SOURCE_DIR&#125;)
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/09/Gtest%20%E5%AD%A6%E4%B9%A0(%E4%B8%80)/" title="Gtest入门介绍">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Gtest入门介绍</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2022/09/08/CMake%E5%AD%A6%E4%B9%A0/" title="CMake 学习(一)">
+                        <span class="hidden-mobile">CMake 学习(一)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

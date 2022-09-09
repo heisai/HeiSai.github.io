@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>Gtest入门介绍</title>
+    <link href="/2022/09/09/Gtest%20%E5%AD%A6%E4%B9%A0(%E4%B8%80)/"/>
+    <url>/2022/09/09/Gtest%20%E5%AD%A6%E4%B9%A0(%E4%B8%80)/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Gtest入门介绍"><a href="#Gtest入门介绍" class="headerlink" title="Gtest入门介绍"></a><em>Gtest入门介绍</em></h1><h4 id="简单使用："><a href="#简单使用：" class="headerlink" title="简单使用："></a>简单使用：</h4><pre><code class="hljs">    //test function    int getdata(int n,int m)    &#123;        return  n+m;    &#125;    TEST(getdata, demon)    &#123;        EXPECT_EQ(1,1);  // 等于        EXPECT_NE(1,2);  //不等于        EXPECT_LE(1,2);  // 小于等于        EXPECT_LT(getdata(1,-1),2);  //小于        EXPECT_GT(getdata(1,2),1);   //大于        EXPECT_GE(getdata(1,2),1);   //大于等于        EXPECT_TRUE(1!=2); //判断true        EXPECT_FALSE(1==2); //判断true    &#125;    int main(int argc, char **argv)    &#123;        ::testing::InitGoogleTest(&amp;argc, argv);        return RUN_ALL_TESTS();    &#125;</code></pre><h4 id="复杂条件判断"><a href="#复杂条件判断" class="headerlink" title="复杂条件判断:"></a>复杂条件判断:</h4><pre><code class="hljs">    尽管 googletest 有一组丰富的断言，但它们永远不会是完整的，因为预测用户可能遇到的所有场景是不可能的（也不是一个好主意）。因此，有时用户不得不使用EXPECT_TRUE()检查一个复杂的表达式，因为缺少一个更好的宏。这样做的问题是没有向您显示表达式部分的值，因此很难理解出了什么问题。作为一种解决方法，一些用户选择自己构建失败消息，将其流式传输到EXPECT_TRUE(). 但是，这很尴尬，尤其是当表达式具有副作用或评估成本很高时。    googletest 为您提供了三种不同的选项来解决此问题：</code></pre><ul><li><p>使用现有的布尔函数</p><pre><code class="hljs">   如果您已经有一个返回的函数或仿函数bool（或可以隐式转换为的类型bool），您可以在谓词断言中使用它来免费打印函数参数  bool Factorial(int n,int m)  &#123;      return (n+m)&gt;5;  &#125;  TEST(judage,demon1)  &#123;      EXPECT_PRED2(Factorial,3,1);  &#125;</code></pre></li><li><p>使用返回 AssertionResult 的函数</p><pre><code class="hljs">  testing::AssertionResult IsEven(int data )  &#123;      if ((data % 2) == 0)          return testing::AssertionSuccess();      else          return testing::AssertionFailure() &lt;&lt; data &lt;&lt; &quot;%2!=0&quot;;  &#125;  int datavalue(int data)  &#123;      // do something      return data*data;  &#125;  TEST(getdata, demon2)  &#123;      EXPECT_TRUE(IsEven(10));      EXPECT_TRUE(IsEven(datavalue(5)));  &#125;</code></pre></li></ul><h4 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h4><pre><code class="hljs">TEST(getdata, demon2)&#123;    cout&lt;&lt;&quot;str compare&quot;&lt;&lt;endl;    EXPECT_STREQ(&quot;1234&quot;,&quot;1234&quot;);            //等于    EXPECT_STRNE(&quot;1234&quot;,&quot;12345&quot;);           //不等于    EXPECT_STRCASEEQ(&quot;qwer&quot;,&quot;QWER&quot;);        //忽略大小写等于    EXPECT_STRCASENE(&quot;qwer&quot;,&quot;QWERq&quot;);       //忽略大小写不等于&#125;</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Gtest</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>CMake 学习(一)</title>
     <link href="/2022/09/08/CMake%E5%AD%A6%E4%B9%A0/"/>
     <url>/2022/09/08/CMake%E5%AD%A6%E4%B9%A0/</url>
