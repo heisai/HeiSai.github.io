@@ -16,21 +16,22 @@
   <meta name="author" content="HeiSai">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="Cmake 进阶使用添加子目录（子工程–可执行文件） 指令   将子目录添加到构建。    add_subdirectory(source_dir [binary_dir] [EXCLUDE_FROM_ALL])    将子目录添加到构建。source_dir 指定源 CMakeLists.txt 和代码文件所在的目录。如果它是相对路径，它   将相对于当前目录进行评估（典型用法），但它也可能是绝">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2022/09/08/hello-world/index.html">
+<meta property="og:title" content="CMake 学习(二)">
+<meta property="og:url" content="http://example.com/2022/09/16/CMake%E5%AD%A6%E4%B9%A0(%E4%BA%8C)/index.html">
 <meta property="og:site_name" content="HeiSai">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="Cmake 进阶使用添加子目录（子工程–可执行文件） 指令   将子目录添加到构建。    add_subdirectory(source_dir [binary_dir] [EXCLUDE_FROM_ALL])    将子目录添加到构建。source_dir 指定源 CMakeLists.txt 和代码文件所在的目录。如果它是相对路径，它   将相对于当前目录进行评估（典型用法），但它也可能是绝">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-09-08T05:31:04.371Z">
-<meta property="article:modified_time" content="2022-09-08T05:31:04.371Z">
+<meta property="article:published_time" content="2022-09-16T15:01:06.000Z">
+<meta property="article:modified_time" content="2022-09-16T16:13:52.314Z">
 <meta property="article:author" content="HeiSai">
+<meta property="article:tag" content="CMake 工具">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Hello World - HeiSai</title>
+  <title>CMake 学习(二) - HeiSai</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -212,7 +213,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hello World"></span>
+            <span id="subtitle" data-typed-text="CMake 学习(二)"></span>
           
         </div>
 
@@ -223,8 +224,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-08 13:31" pubdate>
-          2022年9月8日 下午
+        <time datetime="2022-09-16 23:01" pubdate>
+          2022年9月16日 晚上
         </time>
       </span>
     
@@ -236,7 +237,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          367字
+          1.6k字
         
       </span>
     
@@ -248,7 +249,7 @@
         
         
           <!-- compatible with older versions-->
-          4分钟
+          14分钟
         
       </span>
     
@@ -294,24 +295,113 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Hello World</h1>
+            <h1 style="display: none">CMake 学习(二)</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
+                <h1 id="Cmake-进阶使用"><a href="#Cmake-进阶使用" class="headerlink" title="Cmake 进阶使用"></a><em>Cmake 进阶使用</em></h1><h2 id="添加子目录（子工程–可执行文件）"><a href="#添加子目录（子工程–可执行文件）" class="headerlink" title="添加子目录（子工程–可执行文件）"></a>添加子目录（子工程–可执行文件）</h2><ul>
+<li><p>指令</p>
+<pre><code class="hljs">  将子目录添加到构建。
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
+  add_subdirectory(source_dir [binary_dir] [EXCLUDE_FROM_ALL])
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
+  将子目录添加到构建。source_dir 指定源 CMakeLists.txt 和代码文件所在的目录。如果它是相对路径，它
+  将相对于当前目录进行评估（典型用法），但它也可能是绝对路径。binary_dir指定放置输出文件的目录
+</code></pre>
+</li>
+<li><p>自己理解</p>
+<pre><code class="hljs">  将source_dir 目录生成的东西（可执行文件， 库）添加到指定的目录，
+  可以搞多工程（一个主工程， 下面有多个子工程（可执行文件，库））
+</code></pre>
+</li>
+<li><p>使用案例：</p>
+<pre><code class="hljs">  |-- CMakeLists.txt
+  |-- src
+  |   |-- CMakeLists.txt
+  |   |-- MyWidget.cpp
+  |   |-- MyWidget.h
+  |   `-- main.cpp
+  `-- test
+      |-- CMakeLists.txt
+      `-- main.cpp
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+  // 总目录：
+
+  cmake_minimum_required(VERSION 3.5)
+
+  project(HELLO LANGUAGES  C CXX)
+
+  set(CMAKE_CXX_STANDARD 17)
+
+  set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+  ADD_SUBDIRECTORY(src)
+
+  ADD_SUBDIRECTORY(test)
+
+  =======================================================
+  // src 目录
+
+  file(GLOB_RECURSE SOURCE_FILES  ./*.cpp)                   # 添加 .cpp
+
+  file(GLOB_RECURSE HEADER_FILES  ./*.h)                     # 添加 .h
+
+  ADD_EXECUTABLE(hello main.cpp  $&#123;HEADER_FILES&#125; $&#123;SOURCE_FILES&#125;)
+
+  SET(EXECUTABLE_OUTPUT_PATH $&#123;PROJECT_BINARY_DIR&#125;/bin3)
+
+  ========================================================
+  // test 目录 
+
+  ADD_EXECUTABLE(test main.cpp)
+
+  SET(EXECUTABLE_OUTPUT_PATH $&#123;PROJECT_BINARY_DIR&#125;/bin3)
+</code></pre>
+</li>
+<li><p>生成目录</p>
+<pre><code class="hljs">  $ tree -d
+  .
+  |-- CMakeFiles
+  |   |-- 3.23.1
+  |   |   |-- CompilerIdC
+  |   |   |   `-- tmp
+  |   |   `-- CompilerIdCXX
+  |   |       `-- tmp
+  |   |-- CMakeTmp
+  |   `-- ShowIncludes
+  |-- bin3
+  |-- src
+  |   `-- CMakeFiles
+  |       `-- hello.dir
+  `-- test
+      `-- CMakeFiles
+          `-- test.dir
+</code></pre>
+</li>
+</ul>
+<h2 id="指定地方保存二进制文件"><a href="#指定地方保存二进制文件" class="headerlink" title="指定地方保存二进制文件"></a>指定地方保存二进制文件</h2><ul>
+<li><p><strong>方法一：通用情况</strong></p>
+<pre><code class="hljs">  # 将生成的可执行程序输出到 &#123;build&#125;/bin
+
+  SET(EXECUTABLE_OUTPUT_PATH $&#123;PROJECT_BINARY_DIR&#125;/bin)
+
+  # 将生成的库文件输出到 &#123;build&#125;/bin
+
+  SET(LIBRARY_OUTPUT_PATH $&#123;PROJECT_BINARY_DIR&#125;/lib)
+
+  指最终生成的可执行程序 或者最终的共享库，不包含编译生成 的中间文件)
+</code></pre>
+</li>
+<li><p><strong>方法二：特殊情况(有子目录嵌套)</strong></p>
+<pre><code class="hljs">  #将 src 目录下的二进制文件 输出到&#123;build&#125;/src 目录
+  ADD_SUBDIRECTORY(src)
+  #将 src 目录下的二进制文件 输出到&#123;build&#125;/test 目录
+  ADD_SUBDIRECTORY(test)
+</code></pre>
+</li>
+</ul>
 
                 
               </div>
@@ -321,6 +411,13 @@
               <div class="post-metas my-3">
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CMake-%E5%B7%A5%E5%85%B7/">#CMake 工具</a>
+      
+    </div>
+  
 </div>
 
 
@@ -329,8 +426,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hello World</div>
-      <div>http://example.com/2022/09/08/hello-world/</div>
+      <div>CMake 学习(二)</div>
+      <div>http://example.com/2022/09/16/CMake学习(二)/</div>
     </div>
     <div class="license-meta">
       
@@ -342,7 +439,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年9月8日</div>
+          <div>2022年9月16日</div>
         </div>
       
       
@@ -372,15 +469,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/08/CMake%E5%AD%A6%E4%B9%A0/" title="CMake 学习(一)">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">CMake 学习(一)</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2022/09/09/Gtest%20%E5%AD%A6%E4%B9%A0(%E4%B8%80)/" title="Gtest入门介绍">
+                        <span class="hidden-mobile">Gtest入门介绍</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

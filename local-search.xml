@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>CMake 学习(二)</title>
+    <link href="/2022/09/16/CMake%E5%AD%A6%E4%B9%A0(%E4%BA%8C)/"/>
+    <url>/2022/09/16/CMake%E5%AD%A6%E4%B9%A0(%E4%BA%8C)/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Cmake-进阶使用"><a href="#Cmake-进阶使用" class="headerlink" title="Cmake 进阶使用"></a><em>Cmake 进阶使用</em></h1><h2 id="添加子目录（子工程–可执行文件）"><a href="#添加子目录（子工程–可执行文件）" class="headerlink" title="添加子目录（子工程–可执行文件）"></a>添加子目录（子工程–可执行文件）</h2><ul><li><p>指令</p><pre><code class="hljs">  将子目录添加到构建。  add_subdirectory(source_dir [binary_dir] [EXCLUDE_FROM_ALL])  将子目录添加到构建。source_dir 指定源 CMakeLists.txt 和代码文件所在的目录。如果它是相对路径，它  将相对于当前目录进行评估（典型用法），但它也可能是绝对路径。binary_dir指定放置输出文件的目录</code></pre></li><li><p>自己理解</p><pre><code class="hljs">  将source_dir 目录生成的东西（可执行文件， 库）添加到指定的目录，  可以搞多工程（一个主工程， 下面有多个子工程（可执行文件，库））</code></pre></li><li><p>使用案例：</p><pre><code class="hljs">  |-- CMakeLists.txt  |-- src  |   |-- CMakeLists.txt  |   |-- MyWidget.cpp  |   |-- MyWidget.h  |   `-- main.cpp  `-- test      |-- CMakeLists.txt      `-- main.cpp  // 总目录：  cmake_minimum_required(VERSION 3.5)  project(HELLO LANGUAGES  C CXX)  set(CMAKE_CXX_STANDARD 17)  set(CMAKE_CXX_STANDARD_REQUIRED ON)  ADD_SUBDIRECTORY(src)  ADD_SUBDIRECTORY(test)  =======================================================  // src 目录  file(GLOB_RECURSE SOURCE_FILES  ./*.cpp)                   # 添加 .cpp  file(GLOB_RECURSE HEADER_FILES  ./*.h)                     # 添加 .h  ADD_EXECUTABLE(hello main.cpp  $&#123;HEADER_FILES&#125; $&#123;SOURCE_FILES&#125;)  SET(EXECUTABLE_OUTPUT_PATH $&#123;PROJECT_BINARY_DIR&#125;/bin3)  ========================================================  // test 目录   ADD_EXECUTABLE(test main.cpp)  SET(EXECUTABLE_OUTPUT_PATH $&#123;PROJECT_BINARY_DIR&#125;/bin3)</code></pre></li><li><p>生成目录</p><pre><code class="hljs">  $ tree -d  .  |-- CMakeFiles  |   |-- 3.23.1  |   |   |-- CompilerIdC  |   |   |   `-- tmp  |   |   `-- CompilerIdCXX  |   |       `-- tmp  |   |-- CMakeTmp  |   `-- ShowIncludes  |-- bin3  |-- src  |   `-- CMakeFiles  |       `-- hello.dir  `-- test      `-- CMakeFiles          `-- test.dir</code></pre></li></ul><h2 id="指定地方保存二进制文件"><a href="#指定地方保存二进制文件" class="headerlink" title="指定地方保存二进制文件"></a>指定地方保存二进制文件</h2><ul><li><p><strong>方法一：通用情况</strong></p><pre><code class="hljs">  # 将生成的可执行程序输出到 &#123;build&#125;/bin  SET(EXECUTABLE_OUTPUT_PATH $&#123;PROJECT_BINARY_DIR&#125;/bin)  # 将生成的库文件输出到 &#123;build&#125;/bin  SET(LIBRARY_OUTPUT_PATH $&#123;PROJECT_BINARY_DIR&#125;/lib)  指最终生成的可执行程序 或者最终的共享库，不包含编译生成 的中间文件)</code></pre></li><li><p><strong>方法二：特殊情况(有子目录嵌套)</strong></p><pre><code class="hljs">  #将 src 目录下的二进制文件 输出到&#123;build&#125;/src 目录  ADD_SUBDIRECTORY(src)  #将 src 目录下的二进制文件 输出到&#123;build&#125;/test 目录  ADD_SUBDIRECTORY(test)</code></pre></li></ul>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>CMake 工具</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Gtest入门介绍</title>
     <link href="/2022/09/09/Gtest%20%E5%AD%A6%E4%B9%A0(%E4%B8%80)/"/>
     <url>/2022/09/09/Gtest%20%E5%AD%A6%E4%B9%A0(%E4%B8%80)/</url>
@@ -24,8 +43,8 @@
   
   <entry>
     <title>CMake 学习(一)</title>
-    <link href="/2022/09/08/CMake%E5%AD%A6%E4%B9%A0/"/>
-    <url>/2022/09/08/CMake%E5%AD%A6%E4%B9%A0/</url>
+    <link href="/2022/09/08/CMake%E5%AD%A6%E4%B9%A0(%E4%B8%80)/"/>
+    <url>/2022/09/08/CMake%E5%AD%A6%E4%B9%A0(%E4%B8%80)/</url>
     
     <content type="html"><![CDATA[<h1 id="Cmake-使用"><a href="#Cmake-使用" class="headerlink" title="Cmake 使用"></a><em>Cmake 使用</em></h1><h2 id="1：-最小案例："><a href="#1：-最小案例：" class="headerlink" title="1： 最小案例："></a>1： 最小案例：</h2><pre><code class="hljs">cmake_minimum_required(VERSION 3.5)project(Demon LANGUAGES C CXX)            // 设置工程名称 和 c c++ 语言set(CMAKE_CXX_STANDARD 17)                   //指定为C++17 版本set(CMAKE_CXX_STANDARD_REQUIRED ON)add_executable($&#123;PROJECT_NAME&#125; main.cpp) </code></pre><table><thead><tr><th>变量</th><th>解释</th></tr></thead><tbody><tr><td>LANGUAGES</td><td>支持语言</td></tr><tr><td>CMAKE_CXX_STANDARD</td><td>c++语言版本</td></tr><tr><td>PROJECT_NAME</td><td>工程名称</td></tr><tr><td>PROJECT_BINARY_DIR</td><td>执行程序目录</td></tr><tr><td>PROJECT_SOURCE_DIR</td><td>源文件目录</td></tr></tbody></table><pre><code class="hljs">PROJECT(projectname [CXX] [C] [Java])：你可以用这个指令定义工程名称,并可指定工程支持的语言,支持的语言列表是可以忽略的,默认情况表示支持所有语言。这个指令隐式的定义了两个 cmake 变量:&lt;projectname&gt;_BINARY_DIR 以及&lt;projectname&gt;_SOURCE_DIR,这里就是MESSAGE(STATUS &quot;This is BINARY dir &quot; $&#123;Demon_BINARY_DIR&#125;)MESSAGE(STATUS &quot;This is SOURCE dir &quot;$&#123;Demon_SOURCE_DIR&#125;)替代品：MESSAGE(STATUS &quot;This is BINARY dir &quot; $&#123;PROJECT_BINARY_DIR&#125;)MESSAGE(STATUS &quot;This is SOURCE dir &quot;$&#123;PROJECT_SOURCE_DIR&#125;)生成结果：    -- This is BINARY dir E:/GLTest/CMAKE/cmaketest/build    -- This is BINARY dir E:/GLTest/CMAKE/cmaketest</code></pre><h2 id="2：-生成一个库并添加："><a href="#2：-生成一个库并添加：" class="headerlink" title="2： 生成一个库并添加："></a>2： 生成一个库并添加：</h2><ul><li><p>第一种方法</p><pre><code class="hljs">  cmake_minimum_required(VERSION 3.5)  project(cmaketest LANGUAGES CXX)  set(CMAKE_CXX_STANDARD 17)  set(CMAKE_CXX_STANDARD_REQUIRED ON)  file(GLOB_RECURSE SOURCE_FILES  ./adddir/*.cpp)       # 递归遍历 添加 .cpp  file(GLOB_RECURSE HEADER_FILES  ./adddir/*.h)         # 递归遍历添加 .h  add_library (ADD  ./adddir/MyAdd.cpp)                 # 生成 add.lib 库  add_executable(cmaketest main.cpp $&#123;SOURCE_FILES&#125;)  target_link_libraries($&#123;PROJECT_NAME&#125; ADD)            # 链接调用 ADD.lib</code></pre></li><li><p>第二种方法：</p><pre><code class="hljs">  ├── CMakeLists.txt                      #父目录的CMakeList.txt  ├── main.cpp                            #源文件，包含main函数  ├── adddir                              #子目录      └── CMakeLists.txt                  #子目录的CMakeLists.txt      └── MyAdd.h                         #子目录头文件      └── MyAdd.cpp                       #子目录源文件  cmake_minimum_required(VERSION 3.5)  project(cmaketest LANGUAGES CXX)  set(CMAKE_CXX_STANDARD 17)  set(CMAKE_CXX_STANDARD_REQUIRED ON)  include_directories ($&#123;PROJECT_SOURCE_DIR&#125;/adddir)  add_subdirectory (adddir)  add_executable(cmaketest main.cpp $&#123;SOURCE_FILES&#125;)  target_link_libraries($&#123;PROJECT_NAME&#125; ADD)                    # 链接调用 ADD.lib  // adddir cmakelist  add_library (ADD  MyAdd.cpp)</code></pre><p>  <em>区别：</em></p><pre><code class="hljs">  第一种 add.lib 生成在和可执行程序在同一目录  第二种 add.lib 生成在可执行程序目录的 adddir 目录（add_subdirectory (adddir)）</code></pre></li></ul><h2 id="3：-项目中使用第三方库"><a href="#3：-项目中使用第三方库" class="headerlink" title="3： 项目中使用第三方库"></a>3： 项目中使用第三方库</h2><ul><li><p>使用场景：项目中使用OpenGl 第三放库（glfw）以及glad,glm 源文件</p></li><li><p>案例：</p><pre><code class="hljs">      cmake_minimum_required(VERSION 3.5)      project(opengl6 LANGUAGES  C CXX)      set(CMAKE_CXX_STANDARD 17)                          set(CMAKE_CXX_STANDARD_REQUIRED ON)      set(LIBDIR  ./OpenGl/glfw/lib)                                                  #设置库路径            set(INCLUDEDIR  ./OpenGl/glad/include ./OpenGl/glfw/include ./OpenGl/glm)       #设置头文件路径        link_directories($&#123;LIBDIR&#125;)                                    # 加载库路径        include_directories($&#123;INCLUDEDIR&#125;)                             # 加载头文件路径      file(GLOB_RECURSE SOURCE_FILES  ./src/*.cpp)                   # 添加 .cpp      file(GLOB_RECURSE HEADER_FILES  ./src/*.h)                     # 添加 .h        add_executable ($&#123;PROJECT_NAME&#125; main.cpp $&#123;HEADER_FILES&#125; $&#123;SOURCE_FILES&#125;)        # 将源代码添加到此项目的可执行文件。      add_library(GLAD ./src/glad.c)                                # 编译glad 库      set(LIBS glfw3 opengl32 GLAD)            target_link_libraries($&#123;PROJECT_NAME&#125; $&#123;LIBS&#125;)                # 链接 可执行文件 所需库</code></pre></li><li><p>讲解：</p><pre><code class="hljs">  1&gt; link_directories($&#123;LIBDIR&#125;)             # 加载库文件  2&gt; include_directories($&#123;INCLUDEDIR&#125;)      # 加载头文件  3&gt; SET 指令的语法是:  现阶段,你只需要了解 SET 指令可以用来显式的定义变量即可。      SET(VAR [VALUE] [CACHE TYPE DOCSTRING [FORCE]])  4&gt; MESSAGE 指令的语法是:   MESSAGE([SEND_ERROR | STATUS | FATAL_ERROR] &quot;message to display&quot;...)      这个指令用于向终端输出用户定义的信息,包含了三种类型:            SEND_ERROR,产生错误,生成过程被跳过。      SATUS,输出前缀为—的信息。      FATAL_ERROR,立即终止所有 cmake 过程.      MESSAGE(SEND_ERROR  &quot;SEND_ERROR&quot; )      CMake Error at CMakeLists.txt:8 (MESSAGE):          SEND_ERROR            MESSAGE(FATAL_ERROR &quot;FATAL_ERROR&quot; )            CMake Error at CMakeLists.txt:9 (MESSAGE):          FATAL_ERROR</code></pre></li></ul>]]></content>
     
@@ -36,19 +55,6 @@
       <tag>CMake 工具</tag>
       
     </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="/2022/09/08/hello-world/"/>
-    <url>/2022/09/08/hello-world/</url>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
-    
-    
     
   </entry>
   
