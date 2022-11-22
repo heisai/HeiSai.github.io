@@ -16,22 +16,21 @@
   <meta name="author" content="HeiSai">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Cmake 进阶使用添加子目录（子工程–可执行文件） 指令   将子目录添加到构建。    add_subdirectory(source_dir [binary_dir] [EXCLUDE_FROM_ALL])    将子目录添加到构建。source_dir 指定源 CMakeLists.txt 和代码文件所在的目录。如果它是相对路径，它   将相对于当前目录进行评估（典型用法），但它也可能是绝">
+    <meta name="description" content="线程任务与期望值关联一Async 的使用12345678910111213template &lt;class _Fty, class... _ArgTypes&gt;    _NODISCARD future&lt;_Invoke_result_t&lt;decay_t&lt;_Fty&gt;, decay_t&lt;_ArgTypes&gt;...&gt;&gt; async(">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CMake学习二">
-<meta property="og:url" content="http://example.com/2022/09/17/CMake%E5%AD%A6%E4%B9%A0%E4%BA%8C/index.html">
+<meta property="og:title" content="HeiSai">
+<meta property="og:url" content="http://example.com/2022/11/22/c++%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B4-1/index.html">
 <meta property="og:site_name" content="HeiSai">
-<meta property="og:description" content="Cmake 进阶使用添加子目录（子工程–可执行文件） 指令   将子目录添加到构建。    add_subdirectory(source_dir [binary_dir] [EXCLUDE_FROM_ALL])    将子目录添加到构建。source_dir 指定源 CMakeLists.txt 和代码文件所在的目录。如果它是相对路径，它   将相对于当前目录进行评估（典型用法），但它也可能是绝">
+<meta property="og:description" content="线程任务与期望值关联一Async 的使用12345678910111213template &lt;class _Fty, class... _ArgTypes&gt;    _NODISCARD future&lt;_Invoke_result_t&lt;decay_t&lt;_Fty&gt;, decay_t&lt;_ArgTypes&gt;...&gt;&gt; async(">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-09-16T16:19:24.000Z">
-<meta property="article:modified_time" content="2022-09-16T16:23:43.845Z">
+<meta property="article:published_time" content="2022-11-22T14:59:10.745Z">
+<meta property="article:modified_time" content="2022-11-22T15:02:51.102Z">
 <meta property="article:author" content="HeiSai">
-<meta property="article:tag" content="CMake 工具">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>CMake学习二 - HeiSai</title>
+  <title>HeiSai</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -213,7 +212,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="CMake学习二"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -224,8 +223,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-17 00:19" pubdate>
-          2022年9月17日 凌晨
+        <time datetime="2022-11-22 22:59" pubdate>
+          2022年11月22日 晚上
         </time>
       </span>
     
@@ -237,7 +236,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.6k字
+          3.4k字
         
       </span>
     
@@ -249,7 +248,7 @@
         
         
           <!-- compatible with older versions-->
-          14分钟
+          29分钟
         
       </span>
     
@@ -295,114 +294,47 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">CMake学习二</h1>
+            <h1 style="display: none"></h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Cmake-进阶使用"><a href="#Cmake-进阶使用" class="headerlink" title="Cmake 进阶使用"></a><em>Cmake 进阶使用</em></h1><h2 id="添加子目录（子工程–可执行文件）"><a href="#添加子目录（子工程–可执行文件）" class="headerlink" title="添加子目录（子工程–可执行文件）"></a>添加子目录（子工程–可执行文件）</h2><ul>
-<li><p>指令</p>
-<pre><code class="hljs">  将子目录添加到构建。
-
-  add_subdirectory(source_dir [binary_dir] [EXCLUDE_FROM_ALL])
-
-  将子目录添加到构建。source_dir 指定源 CMakeLists.txt 和代码文件所在的目录。如果它是相对路径，它
-  将相对于当前目录进行评估（典型用法），但它也可能是绝对路径。binary_dir指定放置输出文件的目录
+                <h3 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h3><h3 id="任务与期望值关联一"><a href="#任务与期望值关联一" class="headerlink" title="任务与期望值关联一"></a>任务与期望值关联一</h3><h4 id="Async-的使用"><a href="#Async-的使用" class="headerlink" title="Async 的使用"></a>Async 的使用</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">_Fty</span>, <span class="hljs-keyword">class</span>... _ArgTypes&gt;<br>    _NODISCARD future&lt;_Invoke_result_t&lt;<span class="hljs-type">decay_t</span>&lt;_Fty&gt;, <span class="hljs-type">decay_t</span>&lt;_ArgTypes&gt;...&gt;&gt; <span class="hljs-built_in">async</span>(<br>        launch _Policy, _Fty&amp;&amp; _Fnarg, _ArgTypes&amp;&amp;... _Args) &#123;<br>        <span class="hljs-comment">// manages a callable object launched with supplied policy</span><br>        <span class="hljs-keyword">using</span> _Ret   = _Invoke_result_t&lt;<span class="hljs-type">decay_t</span>&lt;_Fty&gt;, <span class="hljs-type">decay_t</span>&lt;_ArgTypes&gt;...&gt;;<br>        <span class="hljs-keyword">using</span> _Ptype = <span class="hljs-keyword">typename</span> _P_arg_type&lt;_Ret&gt;::type;<br>        _Promise&lt;_Ptype&gt; _Pr(<br>            _Get_associated_state&lt;_Ret&gt;(_Policy, _Fake_no_copy_callable_adapter&lt;_Fty, _ArgTypes...&gt;(<br>                                                    _STD forward&lt;_Fty&gt;(_Fnarg), _STD forward&lt;_ArgTypes&gt;(_Args)...)));<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">future</span>&lt;_Ret&gt;(_Pr._Get_state_for_future(), _Nil());<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<ul>
+<li><p>参数1：启动选项：</p>
+<pre><code class="hljs">  enum class launch 
+  &#123; // names for launch options passed to async
+          async    = 0x1, //异步
+          deferred = 0x2 // 延迟
+  &#125;;
 </code></pre>
 </li>
-<li><p>自己理解</p>
-<pre><code class="hljs">  将source_dir 目录生成的东西（可执行文件， 库）添加到指定的目录，
-  可以搞多工程（一个主工程， 下面有多个子工程（可执行文件，库））
+<li><p>参数2: 函数：</p>
+<pre><code class="hljs">  一般函数
+  类成员函数
+  类的静态函数
+  lambda 函数
+  (用bind 绑定的函数)
 </code></pre>
 </li>
-<li><p>使用案例：</p>
-<pre><code class="hljs">  |-- CMakeLists.txt
-  |-- src
-  |   |-- CMakeLists.txt
-  |   |-- MyWidget.cpp
-  |   |-- MyWidget.h
-  |   `-- main.cpp
-  `-- test
-      |-- CMakeLists.txt
-      `-- main.cpp
+<li><p>参数3：可变参数模板<br>案例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">task</span><span class="hljs-params">(<span class="hljs-type">int</span> &amp;num)</span></span><br><span class="hljs-function"></span>&#123;<br>    std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">5</span>));<br>    std::cout&lt;&lt;<span class="hljs-string">&quot;task run over&quot;</span>&lt;&lt;std::endl;<br>    std::cout&lt;&lt;std::this_thread::<span class="hljs-built_in">get_id</span>()&lt;&lt;std::endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">10</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>        <span class="hljs-type">int</span> num  =<span class="hljs-number">10</span>;<br>        std::future&lt;<span class="hljs-type">int</span>&gt;relust = std::<span class="hljs-built_in">async</span>(std::launch::deferred,task,std::<span class="hljs-built_in">ref</span>(num));<br>        <span class="hljs-comment">//std::future&lt;int&gt;relust = std::async(std::launch::async,task,std::ref(num));</span><br>    async<br>        std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">3</span>));<br>        std::cout&lt;&lt;std::this_thread::<span class="hljs-built_in">get_id</span>()&lt;&lt;std::endl;<br>        std::cout&lt;&lt;<span class="hljs-string">&quot;async:&quot;</span>&lt;&lt;relust.<span class="hljs-built_in">get</span>()&lt;&lt;std::endl;<br>        std::cout&lt;&lt;<span class="hljs-string">&quot;numnber:&quot;</span>&lt;&lt;num&lt;&lt;std::endl;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-
-  // 总目录：
-
-  cmake_minimum_required(VERSION 3.5)
-
-  project(HELLO LANGUAGES  C CXX)
-
-  set(CMAKE_CXX_STANDARD 17)
-
-  set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-  ADD_SUBDIRECTORY(src)
-
-  ADD_SUBDIRECTORY(test)
-
-  =======================================================
-  // src 目录
-
-  file(GLOB_RECURSE SOURCE_FILES  ./*.cpp)                   # 添加 .cpp
-
-  file(GLOB_RECURSE HEADER_FILES  ./*.h)                     # 添加 .h
-
-  ADD_EXECUTABLE(hello main.cpp  $&#123;HEADER_FILES&#125; $&#123;SOURCE_FILES&#125;)
-
-  SET(EXECUTABLE_OUTPUT_PATH $&#123;PROJECT_BINARY_DIR&#125;/bin3)
-
-  ========================================================
-  // test 目录 
-
-  ADD_EXECUTABLE(test main.cpp)
-
-  SET(EXECUTABLE_OUTPUT_PATH $&#123;PROJECT_BINARY_DIR&#125;/bin3)
-</code></pre>
-</li>
-<li><p>生成目录</p>
-<pre><code class="hljs">  $ tree -d
-  .
-  |-- CMakeFiles
-  |   |-- 3.23.1
-  |   |   |-- CompilerIdC
-  |   |   |   `-- tmp
-  |   |   `-- CompilerIdCXX
-  |   |       `-- tmp
-  |   |-- CMakeTmp
-  |   `-- ShowIncludes
-  |-- bin3
-  |-- src
-  |   `-- CMakeFiles
-  |       `-- hello.dir
-  `-- test
-      `-- CMakeFiles
-          `-- test.dir
-</code></pre>
+<p>  std::launch::defered 的使用 表明函数调用被延迟到wait() 或者get() 函数调用时才执行，是串行的。<br>  std::launch::async  表明函数必须在新的线程上执行。也就是说调用完async时 函数就已经在运行了，get()只不过是获取结果而已。<br>  有两种情况：<br>      1： 在调用get()的时候 线程已经运行完了 这个时候的get() 就只是简单的获取结果。<br>      2： 在调用get()的时候，线程还没有运行完，这个时候get() 就会阻塞直到线程运行完位置。</p>
 </li>
 </ul>
-<h2 id="指定地方保存二进制文件"><a href="#指定地方保存二进制文件" class="headerlink" title="指定地方保存二进制文件"></a>指定地方保存二进制文件</h2><ul>
-<li><p><strong>方法一：通用情况</strong></p>
-<pre><code class="hljs">  # 将生成的可执行程序输出到 &#123;build&#125;/bin
-
-  SET(EXECUTABLE_OUTPUT_PATH $&#123;PROJECT_BINARY_DIR&#125;/bin)
-
-  # 将生成的库文件输出到 &#123;build&#125;/bin
-
-  SET(LIBRARY_OUTPUT_PATH $&#123;PROJECT_BINARY_DIR&#125;/lib)
-
-  指最终生成的可执行程序 或者最终的共享库，不包含编译生成 的中间文件)
+<h4 id="后续说明"><a href="#后续说明" class="headerlink" title="后续说明"></a>后续说明</h4><pre><code class="hljs">这不是让 std::future 与任务实例相关联的唯 一方式；你也可以将任务包装入 std::packaged_task&lt;&gt; 实例中，或通过编写代码的方式，使
+用 std::promise&lt;&gt; 类型模板显示设置值。与 std::promise&lt;&gt; 对比， std::packaged_task&lt;&gt; 具有更高层的抽象
 </code></pre>
-</li>
-<li><p><strong>方法二：特殊情况(有子目录嵌套)</strong></p>
-<pre><code class="hljs">  #将 src 目录下的二进制文件 输出到&#123;build&#125;/src 目录
-  ADD_SUBDIRECTORY(src)
-  #将 src 目录下的二进制文件 输出到&#123;build&#125;/test 目录
-  ADD_SUBDIRECTORY(test)
+<h3 id="任务与期望值关联二"><a href="#任务与期望值关联二" class="headerlink" title="任务与期望值关联二"></a>任务与期望值关联二</h3><h4 id="std-packaged-task-的使用"><a href="#std-packaged-task-的使用" class="headerlink" title="std::packaged_task 的使用"></a>std::packaged_task 的使用</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">_Ret</span>, <span class="hljs-keyword">class</span>... _ArgTypes&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">packaged_task</span>&lt;_Ret(_ArgTypes...)&gt; &#123;<br>    ...<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="线程中用到的函数讲解："><a href="#线程中用到的函数讲解：" class="headerlink" title="线程中用到的函数讲解："></a>线程中用到的函数讲解：</h3><h4 id="std-ref-和std-cref-的用法"><a href="#std-ref-和std-cref-的用法" class="headerlink" title="std::ref 和std::cref 的用法"></a>std::ref 和std::cref 的用法</h4><pre><code class="hljs">个人理解：std::ref 就是将左值转换成左值引用的作用：
+使用场景：
+    bind()  以及线程的使用 thread()  async() ...
 </code></pre>
-</li>
-</ul>
-
+<p>举例：线程</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">task</span><span class="hljs-params">(<span class="hljs-type">int</span> &amp;num)</span></span><br><span class="hljs-function"></span>&#123;<br>    std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">5</span>));<br>    std::cout&lt;&lt;<span class="hljs-string">&quot;task run over&quot;</span>&lt;&lt;std::endl;<br>    num +=<span class="hljs-number">10</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>        <span class="hljs-type">int</span> num  = <span class="hljs-number">10</span>;<br>        std::future&lt;<span class="hljs-type">int</span>&gt;relust = std::<span class="hljs-built_in">async</span>(task,std::<span class="hljs-built_in">ref</span>(num));<br>        std::cout&lt;&lt;<span class="hljs-string">&quot;async:&quot;</span>&lt;&lt;relust.<span class="hljs-built_in">get</span>()&lt;&lt;std::endl;<br>        std::cout&lt;&lt;<span class="hljs-string">&quot;numnber:&quot;</span>&lt;&lt;num&lt;&lt;std::endl; <span class="hljs-comment">//20</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>举例： bind</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">f</span><span class="hljs-params">(<span class="hljs-type">int</span>&amp; n1, <span class="hljs-type">int</span>&amp; n2, <span class="hljs-type">const</span> <span class="hljs-type">int</span>&amp; n3)</span></span><br><span class="hljs-function"></span>&#123;<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;In function: &quot;</span> &lt;&lt; n1 &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span> &lt;&lt; n2 &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span> &lt;&lt; n3 &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;<br>    ++n1; <span class="hljs-comment">// increments the copy of n1 stored in the function object</span><br>    ++n2; <span class="hljs-comment">// increments the main()&#x27;s n2</span><br>    <span class="hljs-comment">// ++n3; // compile error</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> n1 = <span class="hljs-number">1</span>, n2 = <span class="hljs-number">2</span>, n3 = <span class="hljs-number">3</span>;<br>    std::function&lt;<span class="hljs-type">void</span>()&gt; bound_f = std::<span class="hljs-built_in">bind</span>(f, n1, std::<span class="hljs-built_in">ref</span>(n2), std::<span class="hljs-built_in">cref</span>(n3));<br>    n1 = <span class="hljs-number">10</span>;<br>    n2 = <span class="hljs-number">11</span>;<br>    n3 = <span class="hljs-number">12</span>;<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Before function: &quot;</span> &lt;&lt; n1 &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span> &lt;&lt; n2 &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span> &lt;&lt; n3 &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;<br>    <span class="hljs-built_in">bound_f</span>();<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;After function: &quot;</span> &lt;&lt; n1 &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span> &lt;&lt; n2 &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span> &lt;&lt; n3 &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;<br>&#125;<br><br>Before function: <span class="hljs-number">10</span> <span class="hljs-number">11</span> <span class="hljs-number">12</span><br>In function: <span class="hljs-number">1</span> <span class="hljs-number">11</span> <span class="hljs-number">12</span><br>After function: <span class="hljs-number">10</span> <span class="hljs-number">12</span> <span class="hljs-number">12</span><br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -410,13 +342,6 @@
             <div>
               <div class="post-metas my-3">
   
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/CMake-%E5%B7%A5%E5%85%B7/">#CMake 工具</a>
-      
-    </div>
   
 </div>
 
@@ -426,8 +351,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>CMake学习二</div>
-      <div>http://example.com/2022/09/17/CMake学习二/</div>
+      <div></div>
+      <div>http://example.com/2022/11/22/c++并发编程4-1/</div>
     </div>
     <div class="license-meta">
       
@@ -439,7 +364,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年9月17日</div>
+          <div>2022年11月22日</div>
         </div>
       
       
@@ -469,18 +394,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/22/c++%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B4-1/" title="">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/09/Gtest%20%E5%AD%A6%E4%B9%A0(%E4%B8%80)/" title="Gtest入门介绍">
-                        <span class="hidden-mobile">Gtest入门介绍</span>
+                      <a href="/2022/09/17/CMake%E5%AD%A6%E4%B9%A0%E4%BA%8C/" title="CMake学习二">
+                        <span class="hidden-mobile">CMake学习二</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
